@@ -161,6 +161,7 @@ class RobulaPlus(object):
 
     def transfAddPosition(self, xPath: XPath, element: Element) -> list:
         output = []
+        position = 0
         ancestor = self.getAncestor(element, xPath.getLength() - 1)
         if not xPath.headHasPositionPredicate():
             position = 1

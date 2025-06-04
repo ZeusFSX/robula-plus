@@ -19,6 +19,12 @@ setup(name=NAME,
       license='BSD',
       packages=find_packages(exclude=["tests.*", "tests"]),
       install_requires=[
-            "lxml~=4.6.2"
+            "lxml~=5.4"
+      ],
+      python_requires='>=3.12',
+      classifiers=[
+            'Programming Language :: Python :: 3',
+            'Programming Language :: Python :: 3 :: Only',
+            'Programming Language :: Python :: 3.12',
       ],
       zip_safe=False)

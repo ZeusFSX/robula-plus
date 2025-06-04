@@ -26,8 +26,12 @@ class XPath(object):
 
     def headHasPositionPredicate(self) -> bool:
         splitXPath = self.value.split('/')
-        regExp = re.compile('[\[0-9\]]')
-        return 'position()' in splitXPath[2] or 'last()' in splitXPath[2] or bool(re.match(regExp, splitXPath[2]))
+        regExp = re.compile(r'\[\d+\]')
+        return (
+            'position()' in splitXPath[2]
+            or 'last()' in splitXPath[2]
+            or bool(regExp.search(splitXPath[2]))
+        )
 
     def headHasTextPredicate(self) -> bool:
         return 'text()' in self.value.split('/')[2]

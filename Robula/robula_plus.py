@@ -237,11 +237,11 @@ class RobulaPlus(object):
             attributePowerSet = self.generatePowerSet(attributes)
 
             # remove sets with cardinality < 2
-            attributePowerSet = filter(lambda x: len(x) >= 2, attributePowerSet)
+            attributePowerSet = [s for s in attributePowerSet if len(s) >= 2]
 
             # sort elements inside each powerset
-            for attributeSet in attributePowerSet:
-                attributeSet = sorted(attributeSet, key=cmp_to_key(self.elementCompareFunction))
+            for i, attributeSet in enumerate(attributePowerSet):
+                attributePowerSet[i] = sorted(attributeSet, key=cmp_to_key(self.elementCompareFunction))
 
             # sort attributePowerSet
             attributePowerSet = sorted(attributePowerSet, key=cmp_to_key(self.compareListElementAttributes))
@@ -255,7 +255,7 @@ class RobulaPlus(object):
                 value = attributeSet[0]['value']
                 predicate = f"[@{key}='{value}'"
 
-                for i in range(0, len(attributeSet)):
+                for i in range(1, len(attributeSet)):
                     key = attributeSet[i]['name']
                     value = attributeSet[i]['value']
                     predicate += f" and @{key}='{value}'"
